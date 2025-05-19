@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\admin\ContactUsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
@@ -12,12 +13,12 @@ Route::group([
     'where' => ['lang' => 'en|ar'],
     'middleware' => ['setLocale', 'auth', 'admin'],
 ], function () {
-    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
     Route::resource('abouts', AboutController::class);
-    Route::get('/orders',[OrdersystemController::class,'index'])->name('order.admin');
+    Route::get('/orders', [OrdersystemController::class, 'index'])->name('order.admin');
     Route::get('orders/{order}', [OrdersystemController::class, 'show'])->name('orders.show');
-Route::patch('/orders/{order}/update-status', [OrdersystemController::class, 'updateStatus'])->name('admin.orders.updateStatus');
-
- });
+    Route::patch('/orders/{order}/update-status', [OrdersystemController::class, 'updateStatus'])->name('admin.orders.updateStatus');
+    Route::resource('contact-us', ContactUsController::class);
+});
