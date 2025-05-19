@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\About;
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StatckController extends Controller
@@ -17,7 +19,11 @@ $categories = Category::with('latestProducts')->get();
     }
     public function about($lang){
         $abouts = About::all();
-        return view('website.about.index',compact('abouts'));
+        $productCount = Product::count();
+        $categoryCount = Category::count();
+        $orderCount = Order::count();
+        $userCount = User::count();
+        return view('website.about.index',compact('abouts','productCount', 'categoryCount', 'orderCount', 'userCount'));
     }
     public function faq($lang){
         return view('website.faq.index');

@@ -1,5 +1,5 @@
 @extends('website.layout.app')
-@section('title','About')
+@section('title', 'About')
 @section('content')
 
 
@@ -29,123 +29,90 @@
             <section class="promo-video">
                 <div class="wrapper">
                     <div class="trending-top">
-						<span class="saint-text">Promotion video</span>
-						<h2>Welcome to lujien shope</h2>
-						<p>Today we can offer our customers exclusive products of 108 brands marked "only in lujien shope"</p>
+                        <span class="saint-text">Promotion video</span>
+                        <h2>Welcome to lujien shope</h2>
+                        <p>Today we can offer our customers exclusive products of 108 brands marked "only in lujien shope"
+                        </p>
                     </div>
-                    <div class="promo-video__block">
-                        <img data-src="" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt="">
-                        <iframe allowfullscreen></iframe>
-                        <div class="info-blocks__item-img-overlay">
-                            <span>Promotion video</span>
-                            <div class="info-blocks__item-img-play">
-                                <img data-src="img/play-btn.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt="">
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="promo-video__nums">
                         <div class="promo-video__num">
-                            <span>2300+</span>
+                            <span>{{ number_format($productCount) }}+</span>
                             <h5>Products</h5>
                         </div>
                         <div class="promo-video__num">
-                            <span>108</span>
-                            <h5>brands</h5>
+                            <span>{{ number_format($categoryCount) }}</span>
+                            <h5>Categories</h5>
                         </div>
                         <div class="promo-video__num">
-                            <span>32</span>
-                            <h5>partners</h5>
+                            <span>{{ number_format($orderCount) }}</span>
+                            <h5>Orders</h5>
                         </div>
                         <div class="promo-video__num">
-                            <span>618+</span>
-                            <h5>customers</h5>
+                            <span>{{ number_format($userCount) }}+</span>
+                            <h5>Users</h5>
                         </div>
                     </div>
+
                 </div>
-                <img class="promo-video__decor js-img" data-src="https://via.placeholder.com/1197x1371/FFFFFF" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="">
             </section>
             <!-- PROMO VIDEO EOF   -->
             <!-- BEGIN DISCOUNT -->
-			<div class="discount discount-about js-img" data-src="https://via.placeholder.com/1920x900">
-				<div class="wrapper">
-					<div class="discount-info">
-						<span class="saint-text">Success story</span>
-						<h2>lujien shop develops its own brands</h2>
-                        <p>The lujien shope network is being developed and improved, taking into account all consumer.</p>
-                        <p class="discount-info__sm">Forming the range of stores, we, above all, strive not only to meet the format of "home shop", offering each customer the most basic household goods, but also to create a unique space of beauty and care. lujien shope stores offer their customers the widest and highest quality selection of products from world-renowned manufacturers.</p>
-						<a href="shop.html" class="btn">Shop now</a>
-					</div>
-				</div>
-			</div>
-            <!-- DISCOUNT EOF   -->
-            <!-- BEGIN ADVANTAGES -->
-			<div class="advantages">
-				<div class="wrapper">
-					<div class="advantages-items">
-						<div class="advantages-item">
-							<div class="advantages-item__icon">
-								<i class="icon-natural"></i>
-							</div>
-							<h4>natural</h4>
-							<p>Non aliqua reprehenderit reprehenderit culpa laboris nulla minim anim velit adipisicing ea aliqua alluptate sit do do.</p>
-						</div>
-						<div class="advantages-item">
-							<div class="advantages-item__icon">
-								<i class="icon-quality"></i>
-							</div>
-							<h4>Quality</h4>
-							<p>Non aliqua reprehenderit reprehenderit culpa laboris nulla minim aelit adipisicing ea aliqua alluptate sit do do.</p>
-						</div>
-						<div class="advantages-item">
-							<div class="advantages-item__icon">
-								<i class="icon-organic"></i>
-							</div>
-							<h4>organic</h4>
-							<p>Non aliqua reprehenderit reprehenderit a laboris nulla minim anim velit adipisicing ea aliqua alluptate sit do do.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-            <!-- ADVANTAGES EOF   -->
-            <!-- BEGIN TESTIMONIALS -->
-            <section class="testimonials">
-                <div class="wrapper">
-                    <div class="trending-top">
-						<span class="saint-text">They say</span>
-						<h2>testimonials</h2>
-                    </div>
-                    <div class="testimonials-slider js-testimonials-slider">
-                        <div class="testimonials-slide">
-                            <p>
-                                I am grateful to the employees of lujien shop for the quality products that I have been using for more than a year, try to work at this level
-                                in the future. Thank you)
-                            </p>
-                            <div class="testimonials-author">
-                                <img data-src="https://via.placeholder.com/50" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt="">
-                                <h5>Melissa Jones</h5>
+            @foreach ($abouts as $about)
+                <div class="discount discount-about js-img" data-src="https://via.placeholder.com/1920x900">
+                    <div class="wrapper">
+                            <div class="tg-supplement-img text-end  wow fadeInRight" data-wow-delay=".2s">
+                                <img src="{{ asset($about->image) }}" style="width:70%;" alt="">
                             </div>
-                        </div>
-                        <div class="testimonials-slide">
-                            <p>
-                                I am grateful to the employees of lujien shop for the quality products that I have been using for more than a year, try to work at this level
-                                in the future. Thank you)
-                            </p>
-                            <div class="testimonials-author">
-                                <img data-src="https://via.placeholder.com/50" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt="">
-                                <h5>Melissa Gahan</h5>
-                            </div>
+                        <div class="discount-info">
+                            <span class="saint-text">Success story</span>
+                            <h2>{{ $about->{'name_' . app()->getLocale()} ?? $about->name_en }}</h2>
+                            <p class="discount-info__sm">{!! $about->{'desc_' . app()->getLocale()} ?? $about->desc_en !!} </p>
+                            <a href="shop.html" class="btn">Shop now</a>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- TESTIMONIALS EOF   -->
+            @endforeach
+            <!-- DISCOUNT EOF   -->
+            <!-- BEGIN ADVANTAGES -->
+            <div class="advantages">
+                <div class="wrapper">
+                    <div class="advantages-items">
+                        <div class="advantages-item">
+                            <div class="advantages-item__icon">
+                                <i class="icon-natural"></i>
+                            </div>
+                            <h4>natural</h4>
+                            <p>Non aliqua reprehenderit reprehenderit culpa laboris nulla minim anim velit adipisicing ea
+                                aliqua alluptate sit do do.</p>
+                        </div>
+                        <div class="advantages-item">
+                            <div class="advantages-item__icon">
+                                <i class="icon-quality"></i>
+                            </div>
+                            <h4>Quality</h4>
+                            <p>Non aliqua reprehenderit reprehenderit culpa laboris nulla minim aelit adipisicing ea aliqua
+                                alluptate sit do do.</p>
+                        </div>
+                        <div class="advantages-item">
+                            <div class="advantages-item__icon">
+                                <i class="icon-organic"></i>
+                            </div>
+                            <h4>organic</h4>
+                            <p>Non aliqua reprehenderit reprehenderit a laboris nulla minim anim velit adipisicing ea aliqua
+                                alluptate sit do do.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ADVANTAGES EOF   -->
             <!-- BEGIN SUBSCRIBE -->
             <div class="subscribe">
                 <div class="wrapper">
                     <div class="subscribe-form">
                         <div class="subscribe-form__img">
-                            <img data-src="https://via.placeholder.com/460x302" src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
-                                class="js-img" alt="">
+                            <img data-src="https://via.placeholder.com/460x302"
+                                src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt="">
                         </div>
                         <form>
                             <h3>Stay in touch</h3>
@@ -166,4 +133,4 @@
 
         <!-- CONTENT EOF   -->
 
-@endsection
+    @endsection
