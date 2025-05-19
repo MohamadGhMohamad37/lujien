@@ -21,38 +21,6 @@
                             </li>
                             <li class="bread-crumbs__item">About</li>
                         </ul>
-                        <div class="detail-block__items">
-                            <div class="detail-block__item">
-                                <div class="detail-block__item-icon">
-                                    <img data-src="img/main-text-decor.svg" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt="">
-                                    <i class="icon-shipping"></i>
-                                </div>
-                                <div class="detail-block__item-info">
-                                    <h6>Free Shipping</h6>
-                                    World wide
-                                </div>
-                            </div>
-                            <div class="detail-block__item">
-                                <div class="detail-block__item-icon">
-                                    <img data-src="img/main-text-decor.svg" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt="">
-                                    <i class="icon-helpline"></i>
-                                </div>
-                                <div class="detail-block__item-info">
-                                    <h6>Helpline</h6>
-                                    +1 345 99 71 345
-                                </div>
-                            </div>
-                            <div class="detail-block__item">
-                                <div class="detail-block__item-icon">
-                                    <img data-src="img/main-text-decor.svg" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt="">
-                                    <i class="icon-24"></i>
-                                </div>
-                                <div class="detail-block__item-info">
-                                    <h6>24x7 Extensive</h6>
-                                    Customer Support
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -66,7 +34,7 @@
 						<p>Today we can offer our customers exclusive products of 108 brands marked "only in lujien shope"</p>
                     </div>
                     <div class="promo-video__block">
-                        <img data-src="https://via.placeholder.com/1140x550" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt="">
+                        <img data-src="" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt="">
                         <iframe allowfullscreen></iframe>
                         <div class="info-blocks__item-img-overlay">
                             <span>Promotion video</span>

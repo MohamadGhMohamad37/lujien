@@ -3,6 +3,31 @@
 @section('content')
 
 
+    <style>
+        .btn_content_shop {
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            height: 68vh;
+        }
+    #categorySelect {
+        width: 80%;
+        padding: 10px 15px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin: 20px auto;
+        display: block;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    #categorySelect:focus {
+        border-color: #888;
+        outline: none;
+        box-shadow: 0 0 5px rgba(136, 136, 136, 0.3);
+    }
+</style>
     <!-- BEGIN BODY -->
 
     <div class="main-wrapper">
@@ -26,7 +51,8 @@
             </div>
             <!-- DETAIL MAIN BLOCK EOF   -->
             
-        <!-- MAIN BLOCK EOF --><section class="trending">
+        <!-- MAIN BLOCK EOF -->
+           <section class="trending">
     <div class="trending-content">
         <div class="trending-top">
             <span class="saint-text">Cosmetics</span>
@@ -35,96 +61,51 @@
         </div>
 
         <div class="tab-wrap trending-tabs">
-            <div class="search-bar mb-4">
-                <input type="text" id="productSearch" placeholder="Search products..." class="form-control" style="width: 300px; margin-bottom: 20px;">
-            </div>
-
-            <ul class="nav-tab-list tabs">
-                <li class="active">
-                    <a href="#trending-tab_all">All</a>
-                </li>
+            <select id="categorySelect" class="form-control">
+                <option value="all">All Categories</option>
                 @foreach($categories as $category)
-                    <li>
-                        <a href="#trending-tab_{{ $category->id }}">{{ $category->name_en }}</a>
-                    </li>
+                    <option value="category-{{ $category->id }}">{{ $category->name_en }}</option>
                 @endforeach
-            </ul>
+            </select>
 
             <div class="box-tab-cont">
                 {{-- All Products Tab --}}
-                <div class="tab-cont" id="trending-tab_all">
+                <div class="tab-cont">
                     <div class="products-items js-products-items">
-                        @foreach($categories as $category)
-                            @foreach($category->products as $product)
-                                <a href="#" class="products-item">
-                                    <div class="products-item__type">
-                                        <span class="products-item__sale">{{ $product->tag ?? 'NEW' }}</span>
-                                    </div>
-                                    <div class="products-item__img">
-                                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name_en }}" class="js-img">
-                                        <div class="products-item__hover">
-                                            <i class="icon-search"></i>
-                                            <div class="products-item__hover-options">
-                                                <i class="icon-heart"></i>
-                                                <i class="icon-cart"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="products-item__info">
-                                        <span class="products-item__name">{{ $product->{'name_' . app()->getLocale()} }}</span>
-                                        <span class="products-item__cost">
-                                            @if($product->discount_price)
-                                                <span>{{ $product->discount_price }} SP</span> {{ $product->price }} SP
-                                            @else
-                                                {{ $product->price }} SP
-                                            @endif
-                                        </span>
-                                    </div>
-                                </a>
-                            @endforeach
-                        @endforeach
-                    </div>
-                </div>
+    @foreach($categories as $category)
+        @foreach($category->products  as $product)
+            <a href="{{ route('product.page', ['lang' => app()->getLocale(), 'product' => $product->id]) }}" class="products-item category-{{ $category->id }}" data-category="category-{{ $category->id }}">
 
-                {{-- Tabs for each category --}}
-                @foreach($categories as $category)
-                    <div class="tab-cont hide" id="trending-tab_{{ $category->id }}">
-                        <div class="products-items">
-                            @foreach($category->products as $product)
-                                <a href="#" class="products-item">
-                                    <div class="products-item__type">
-                                        <span class="products-item__sale">{{ $product->tag ?? 'NEW' }}</span>
-                                    </div>
-                                    <div class="products-item__img">
-                                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name_en }}" class="js-img">
-                                        <div class="products-item__hover">
-                                            <i class="icon-search"></i>
-                                            <div class="products-item__hover-options">
-                                                <i class="icon-heart"></i>
-                                                <i class="icon-cart"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="products-item__info">
-                                        <span class="products-item__name">{{ $product->name_en }}</span>
-                                        <span class="products-item__cost">
-                                            @if($product->discount_price)
-                                                <span>{{ $product->original_price }} SP</span> {{ $product->discount_price }} SP
-                                            @else
-                                                {{ $product->original_price }} SP
-                                            @endif
-                                        </span>
-                                    </div>
-                                </a>
-                            @endforeach
+                <div class="products-item__img">
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name_en }}" class="js-img">
+                    <div class="products-item__hover">
+                        <div class="products-item__hover-options">
+                            <i class="fa-solid fa-eye"></i>
                         </div>
                     </div>
-                @endforeach
+                </div>
+                <div class="products-item__info">
+                    <span class="products-item__name">{{ $product->name_en }}</span>
+                    <span class="products-item__cost">
+                        @if($product->discount_price)
+                            <span>{{ $product->price }} SP</span> {{ $product->discount_price }} SP
+                        @else
+                            {{ $product->price }} SP
+                        @endif
+                    </span>
+                </div>
+            </a>
+        @endforeach
+    @endforeach
+</div>
+
+                </div>
 
             </div>
         </div>
     </div>
 </section>
+
             <!-- BEGIN SUBSCRIBE -->
             <div class="subscribe">
                 <div class="wrapper">
@@ -135,7 +116,7 @@
                         </div>
                         <form>
                             <h3>Stay in touch</h3>
-                            <p>Nourish your skin with toxin-free cosmetic roducts.</p>
+                            <p>Nourish your skin with Lujien cosmetic roducts.</p>
                             <div class="box-field__row">
                                 <div class="box-field">
                                     <input type="text" class="form-control" placeholder="Enter your email">
@@ -177,4 +158,28 @@
 <script src="{{ asset('assets/js/jquery.maskedinput.js') }}"></script>
 <script src="{{ asset('assets/js/ion.rangeSlider.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.formstyler.js') }}"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const categorySelect = document.getElementById('categorySelect');
+        const products = document.querySelectorAll('.products-item');
+
+        categorySelect.addEventListener('change', function () {
+            const selectedCategory = this.value;
+
+            products.forEach(product => {
+                if (selectedCategory === 'all') {
+                    product.style.display = 'block';
+                } else {
+                    if (product.dataset.category === selectedCategory) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                }
+            });
+        });
+    });
+</script>
+
 @endsection

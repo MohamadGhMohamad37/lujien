@@ -12,6 +12,7 @@
 	<meta name="keywords" content="" />
 	<link rel="icon" type="image/x-icon" href="{{asset('assets/img/favicon.ico')}}" />
 	<link rel="preload stylesheet" href="{{asset('assets/css/style.css')}}" as="style">
+	<link rel="stylesheet" href="{{ url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css') }}" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="loaded">
@@ -26,10 +27,10 @@
 		<!-- BEGIN HEADER -->
 
 		<header class="header">
-			<div class="header-top">
+			{{-- <div class="header-top">
 				<span>30% OFF ON ALL PRODUCTS ENTER CODE: beshop2020</span>
 				<i class="header-top-close js-header-top-close icon-close"></i>
-			</div>
+			</div> --}}
 			<div class="header-content">
 				<div class="header-logo">
 					<img src="{{asset('assets/img/header-logo.png')}}" width="50%" alt="">
@@ -40,20 +41,15 @@
 						<li><a href="">pages</a>
 							<ul>
 								<li><a href="{{ route('about.page', ['lang' => app()->getLocale()]) }}">About us</a></li>
-								<li><a href="{{ route('faq.page', ['lang' => app()->getLocale()]) }}">FAQ</a></li>
 							</ul>
 						</li>
 						<li><a href="{{ route('shop.page', ['lang' => app()->getLocale()]) }}">shop</a></li>
-						<li><a href="{{ route('categories.page', ['lang' => app()->getLocale()]) }}">Categories</a></li>
-						<li><a href="{{ route('blogs.page', ['lang' => app()->getLocale()]) }}">blog</a></li>
 						<li><a href="{{ route('contact.page', ['lang' => app()->getLocale()]) }}">contact</a></li>
 					</ul>
 					<ul class="header-options">
 						@auth
-						<li><a href="#"><i class="icon-search"></i></a></li>
-						<li><a href="#"><i class="icon-user"></i></a></li>
-						<li><a href="wishlist.html"><i class="icon-heart"></i></a></li>
-						<li><a href="cart.html"><i class="icon-cart"></i><span>0</span></a></li>
+						<li><a href="{{ route('contact.page', ['lang' => app()->getLocale()]) }}"><i class="fa-solid fa-truck"></i></a></li>
+						<li><a href="{{ route('cart.page', ['lang' => app()->getLocale()]) }}"><i class="icon-cart"></i></a></li>
 						<li>
 							<form action="{{ route('logout') }}" method="POST" style="display: inline;">
 								@csrf

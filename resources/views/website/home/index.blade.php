@@ -9,7 +9,25 @@
             align-items: end;
             height: 68vh;
         }
-    </style>
+    #categorySelect {
+        width: 80%;
+        padding: 10px 15px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin: 20px auto;
+        display: block;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    #categorySelect:focus {
+        border-color: #888;
+        outline: none;
+        box-shadow: 0 0 5px rgba(136, 136, 136, 0.3);
+    }
+</style>
+
     <main class="content">
         <!-- BEGIN MAIN BLOCK -->
         <div class="main-block load-bg">
@@ -29,41 +47,47 @@
         </div>
 
         <div class="tab-wrap trending-tabs">
+            <select id="categorySelect" class="form-control">
+                <option value="all">All Categories</option>
+                @foreach($categories as $category)
+                    <option value="category-{{ $category->id }}">{{ $category->name_en }}</option>
+                @endforeach
+            </select>
 
             <div class="box-tab-cont">
                 {{-- All Products Tab --}}
                 <div class="tab-cont">
                     <div class="products-items js-products-items">
-                        @foreach($categories as $category)
-                            @foreach($category->products as $product)
-                                <a href="#" class="products-item">
-                                    <div class="products-item__type">
-                                        <span class="products-item__sale">{{ $product->tag ?? 'NEW' }}</span>
-                                    </div>
-                                    <div class="products-item__img">
-                                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name_en }}" class="js-img">
-                                        <div class="products-item__hover">
-                                            <i class="icon-search"></i>
-                                            <div class="products-item__hover-options">
-                                                <i class="icon-heart"></i>
-                                                <i class="icon-cart"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="products-item__info">
-                                        <span class="products-item__name">{{ $product->name_en }}</span>
-                                        <span class="products-item__cost">
-                                            @if($product->discount_price)
-                                                <span>{{ $product->original_price }} SP</span> {{ $product->price }} SP
-                                            @else
-                                                {{ $product->price }} SP
-                                            @endif
-                                        </span>
-                                    </div>
-                                </a>
-                            @endforeach
-                        @endforeach
+    @foreach($categories as $category)
+        @foreach($category->latestProducts  as $product)
+            <a href="#" class="products-item category-{{ $category->id }}" data-category="category-{{ $category->id }}">
+                <div class="products-item__type">
+                    <span class="products-item__sale">{{ $product->tag ?? 'NEW' }}</span>
+                </div>
+                <div class="products-item__img">
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name_en }}" class="js-img">
+                    <div class="products-item__hover">
+                        <i class="icon-search"></i>
+                        <div class="products-item__hover-options">
+                            <i class="icon-cart"></i>
+                        </div>
                     </div>
+                </div>
+                <div class="products-item__info">
+                    <span class="products-item__name">{{ $product->name_en }}</span>
+                    <span class="products-item__cost">
+                        @if($product->discount_price)
+                            <span>{{ $product->price }} SP</span> {{ $product->discount_price }} SP
+                        @else
+                            {{ $product->price }} SP
+                        @endif
+                    </span>
+                </div>
+            </a>
+        @endforeach
+    @endforeach
+</div>
+
                 </div>
 
             </div>
@@ -130,64 +154,32 @@
             </div>
         </div>
         <!-- ADVANTAGES EOF   -->
-        <!-- BEGIN INFO BLOCKS -->
-        <div class="info-blocks">
-            <div class="info-blocks__item js-img" data-src="https://via.placeholder.com/960x900">
-                <div class="wrapper">
-                    <div class="info-blocks__item-img">
-                        <img data-src="{{ asset('assets/img/yt4aa.jpg') }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
-                            class="js-img" alt="">
-                    </div>
-                    <div class="info-blocks__item-text">
-                        <span class="saint-text">Check This Out</span>
-                        <h2>new collection for delicate skin</h2>
-                        <span class="info-blocks__item-descr">Nourish your skin with toxin-free cosmetic products.
-                            With the offers that you can’t refuse.</span>
-                        <p>Non aliqua reprehenderit reprehenderit culpa laboris nulla minim anim velit adipisicing
-                            ea aliqua alluptate sit do do.Non aliqua reprehenderit reprehenderit culpa laboris nulla
-                            minim anim velit adipisicing ea aliqua alluptate sit do do.Non aliqua reprehenderit
-                            reprehenderit culpa laboris nulla minim.</p>
-                        <a href="#" class="btn">Shop now</a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="info-blocks__item info-blocks__item-reverse js-img"
-                data-src="https://via.placeholder.com/960x900">
-                <div class="wrapper">
-                    <div class="info-blocks__item-img">
-                        <img data-src="{{ asset('assets/img/4.png') }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
-                            class="js-img" alt="">
-                        <iframe allowfullscreen></iframe>
-                        <div class="info-blocks__item-img-overlay">
-                            <span>Promotion video</span>
-                            <div class="info-blocks__item-img-play">
-                                <img data-src="img/play-btn.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
-                                    class="js-img" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-blocks__item-text">
-                        <span class="saint-text">About Us</span>
-                        <h2>Who we are</h2>
-                        <span class="info-blocks__item-descr">Nourish your skin with toxin-free cosmetic products.
-                            With the offers that you can’t refuse.</span>
-                        <p>Non aliqua reprehenderit reprehenderit culpa laboris nulla minim anim velit adipisicing
-                            ea aliqua alluptate sit do do.Non aliqua reprehenderit reprehenderit culpa laboris nulla
-                            minim anim velit adipisicing ea aliqua alluptate sit do do.Non aliqua reprehenderit
-                            reprehenderit culpa laboris nulla minim.</p>
-                        <a href="#" class="info-blocks__item-link">
-                            <i class="icon-video"></i>
-                            Watch video about us
-                            <i class="icon-arrow-lg"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- INFO BLOCKS EOF   -->
-
     </main>
 
     <!-- CONTENT EOF   -->
+@endsection
+@section('script')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const categorySelect = document.getElementById('categorySelect');
+        const products = document.querySelectorAll('.products-item');
+
+        categorySelect.addEventListener('change', function () {
+            const selectedCategory = this.value;
+
+            products.forEach(product => {
+                if (selectedCategory === 'all') {
+                    product.style.display = 'block';
+                } else {
+                    if (product.dataset.category === selectedCategory) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                }
+            });
+        });
+    });
+</script>
+
 @endsection

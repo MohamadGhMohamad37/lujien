@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\About;
 use Illuminate\Http\Request;
 
 class StatckController extends Controller
 {
     public function index($lang){
-    $categories = Category::with('products')->get(); 
-        return view('website.home.index',compact('categories'));
+$categories = Category::with('latestProducts')->get();
+    $latestCategory = Category::with(['products'])->latest()->first();
+
+        return view('website.home.index',compact('categories','latestCategory'));
     }
     public function about($lang){
-        return view('website.about.index');
+        $abouts = About::all();
+        return view('website.about.index',compact('abouts'));
     }
     public function faq($lang){
         return view('website.faq.index');
